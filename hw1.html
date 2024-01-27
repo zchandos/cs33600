@@ -1,0 +1,315 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CS 33600 - Homework 1</title>
+  <meta name="description" content="CS 33600 Homework 1">
+  <meta name="author" content="Roger L. Kraft">
+  <link rel="stylesheet" href="http://math.pnw.edu/~rlkraft/roger-v2.css">
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+<!--
+<header>
+  <a href="http://math.pnw.edu/~rlkraft/" title="Roger L. Kraft">Roger L. Kraft</a>
+</header>
+ -->
+<nav>
+  <ul class="nav-list" role="navigation">
+    <li><a href="../cs33600.html">CS 33600</a></li>
+    <li><a href="../syllabus.html">Syllabus</a></li>
+    <li><a href="../class.html">Lectures and Readings</a></li>
+    <li><a href="../homework.html">Homework Assignments</a></li>
+  </ul>
+  <ul class="nav-list" role="navigation">
+    <li><a href="http://math.pnw.edu/~rlkraft/roger.html">Roger Kraft</a></li>
+    <li><a href="https://pnw.edu/computer-science/">Computer Science Department</a></li>
+    <li><a href="https://pnw.edu/engineering/">School of Engineering</a></li>
+    <li><a href="https://pnw.edu/college-of-engineering-sciences/">College of Engineering & Sciences</a></li>
+    <li><a href="https://pnw.edu/">Purdue University Northwest</a></li>
+  </ul>
+</nav>
+
+<section id="Content">
+<h1>
+Programming Assignment 1<br>
+CS 33600<br>
+Operating Systems<br>
+Spring, 2024
+</h1>
+
+<p>
+This assignment makes use of the files contained in this <a href="hw1.zip">zip file</a>.
+This assignment is due Wednesday, January 31.
+</p>
+
+<p>
+This assignment uses several programming and operating systems concepts that are simple but may be new to you. In this assignment you will use the command-line, command-line arguments, the standard I/O streams, piping, environment variables, and a configuration file.
+</p>
+
+<p>
+In this assignment you will write a Java <a href="http://en.wikipedia.org/wiki/Filter_%28software%29">filter program</a> that formats a jumbled <a href="https://en.wikipedia.org/wiki/Standard_streams">stream</a> of input numbers into nicely organized columns. To determine the parameters for the output formatting your program will make use of <a href="http://en.wikipedia.org/wiki/Command-line_interface#Arguments">command-line arguments</a>, <a href="http://en.wikipedia.org/wiki/Environment_variable">environment</a> <a href="http://foldoc.org/?query=environment+variable">variables</a>, and a <a href="https://en.wikipedia.org/wiki/Configuration_file">configuration file</a>. To test your program you will use the Windows <a href="https://www.cs.princeton.edu/courses/archive/spr05/cos126/cmd-prompt.html">command-line</a>.
+</p>
+
+<p>
+Write a Java program called <code>Filter.java</code> that reads from <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_input_.28stdin.29">standard input</a> and writes to <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_output_.28stdout.29">standard output</a>. The input to your program will be a sequence of positive decimal numbers, which are all less than 10,000, separated by random amounts of <a href="https://en.wikipedia.org/wiki/Whitespace_character">white space</a>. The output of your program will be the input numbers grouped and formatted into columns.
+</p>
+
+<p>
+Here is an example of a sequence of input numbers.
+</p>
+<article>
+<pre>
+5163.1575670644243                 6806.8180791650138
+                 8977.2739646595655
+      2598.0792870876185                 7162.5237586596268          6691.2041993469038
+ 1043.6422009949033
+    6922.8216193121125          3.0480056154058  9926.6081118198181  100.3082369457076
+5135.1567125461588      7808.2382885219886     1439.6542863246559        249.6179692983795
+  214.0065309610279                 9280.5883968626968             2687.3871883297220
+7612.8426770836513         6644.2027649769589  8364.5604419080173      4740.7550279244360
+254.6181218909269         2500.3814813684498
+      2293.6803491317482                  835.3306680501725
+        5962.7923215430155    9622.5988341929387    57.3069246498001
+        1557.9630726035341                8398.5614795373385         5958.4870143742182
+   2568.3835566270945             9935.9135715811644              3410.1040681173131
+982.0299691763055
+  8393.5613269447913           9066.2766808069100                 4896.4546037171549
+     7597.8422193060087            8551.5661488692895   1076.6432081057162
+ 1911.3635059663686         7586.8418836024048       9282.8936429944770 4696.1433149204995
+ 1388.0423596911528
+                 1936.3642689291055     3408.4091921750542              3556.4137089144565
+     9241.8923917355878          5003.4578691976685               3366.7130954924160
+  4270.1303140354621   620.6292916653950    4700.7538071840572         1766.0538956877347
+              441.6238288521989            8153.8591875972779
+</pre>
+</article>
+<p>
+Here are those numbers grouped into a single group, then formatted into three columns, and printed with 13 digits of precision. Notice that there are exactly two spaces between the columns.
+</p>
+<article>
+<pre>
+5163.1575670644243  6806.8180791650138  8977.2739646595655
+2598.0792870876185  7162.5237586596268  6691.2041993469038
+1043.6422009949033  6922.8216193121125     3.0480056154058
+9926.6081118198181   100.3082369457076  5135.1567125461588
+7808.2382885219886  1439.6542863246559   249.6179692983795
+ 214.0065309610279  9280.5883968626968  2687.3871883297220
+7612.8426770836513  6644.2027649769589  8364.5604419080173
+4740.7550279244360   254.6181218909269  2500.3814813684498
+2293.6803491317482   835.3306680501725  5962.7923215430155
+9622.5988341929387    57.3069246498001  1557.9630726035341
+8398.5614795373385  5958.4870143742182  2568.3835566270945
+9935.9135715811644  3410.1040681173131   982.0299691763055
+8393.5613269447913  9066.2766808069100  4896.4546037171549
+7597.8422193060087  8551.5661488692895  1076.6432081057162
+1911.3635059663686  7586.8418836024048  9282.8936429944770
+4696.1433149204995  1388.0423596911528  1936.3642689291055
+3408.4091921750542  3556.4137089144565  9241.8923917355878
+5003.4578691976685  3366.7130954924160  4270.1303140354621
+ 620.6292916653950  4700.7538071840572  1766.0538956877347
+ 441.6238288521989  8153.8591875972779
+</pre>
+</article>
+<p>
+On the other hand, here are those same numbers grouped into groups of 12, then formatted into seven columns, and printed with only two digits of precision. Notice the blank line between groups. Also notice that not every line of output must have all seven columns.
+</p>
+<article>
+<pre>
+5163.16  6806.82  8977.27  2598.08  7162.52  6691.20  1043.64
+6922.82     3.05  9926.61   100.31  5135.16
+
+7808.24  1439.65   249.62   214.01  9280.59  2687.39  7612.84
+6644.20  8364.56  4740.76   254.62  2500.38
+
+2293.68   835.33  5962.79  9622.60    57.31  1557.96  8398.56
+5958.49  2568.38  9935.91  3410.10   982.03
+
+8393.56  9066.28  4896.45  7597.84  8551.57  1076.64  1911.36
+7586.84  9282.89  4696.14  1388.04  1936.36
+
+3408.41  3556.41  9241.89  5003.46  3366.71  4270.13   620.63
+4700.75  1766.05   441.62  8153.86
+</pre>
+</article>
+
+<p>
+The <code>Filter.java</code> program requires three parameters. One parameter determines how many input numbers get grouped together. Another parameter determines the number of output columns. And another parameter determines the number of digits that are printed after a decimal point (this is called the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Formatter.html#syntax">precision</a> of a decimal number).
+</p>
+<p>
+The input numbers should be "right justified" in each output column, which means that all the decimal points in a column should line up vertically. The total width of an output column is <code>4 + 1 + precision</code> characters. There should always be exactly two spaces between the output columns. Each group of numbers should be separated by a blank line.
+<p>
+
+<p>
+In <code>Filter.java</code>, the default number of output columns should be three. If the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html">properties</a> file <code>filter.properties</code> exits in the current directory, and if that properties files contains a key with the name <code>"columns"</code>, then the value of the <code>"columns"</code> key overrides the default number of output columns. If there is an <a href="https://en.wikipedia.org/wiki/Environment_variable">environment variable</a> called <code>CS336_COLUMNS</code>, then the value of that environment variable overrides the default number of columns and the number of columns set by the properties file (if it exits). If there is a first <a href="http://www.linfo.org/argument.html">command-line argument</a>, then that command-line argument overrides the environment variable (if there is one), the properties file (if it exits), and the default number of columns.
+</p>
+
+<p>
+The decimal points of all the numbers in an output column must line up. You line up the decimal points by calling the <a href="https://www.cs.colostate.edu/~cs160/.Summer16/resources/Java_printf_method_quick_reference.pdf">printf</a> method with an appropriate <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Formatter.html#syntax">format string</a>. The number of digits after a decimal point is called the <em>precision</em> of a decimal number. All the numbers in the output will have the same precision. Not all of the numbers in a column will have the same number of digits. Each number in a column should be padded with spaces on the left of the number to fill up its column.
+</p>
+<p>
+In <code>Filter.java</code>, the default precision for your output numbers is 13 decimal places. If the properties file <code>filter.properties</code> exits in the current directory, and if that properties files contains a key with the name <code>"precision"</code>, then the value of the <code>"precision"</code> key overrides the default precision. If there is an environment variable called <code>CS336_PRECISION</code>, then the value of that environment variable overrides the default precision and the precision set by the properties file (if it exits). If there is a second command-line parameter, then that command-line parameter overrides the environment variable (if there is one), the properties file (if it exits), and the default value of precision.
+</p>
+
+<p>
+The input numbers should be combined into groups with the members of each group being formatted into the appropriate number of columns and with a blank line separating each group. In <code>Filter.java</code> the default length of a group should be 0, which means that all the input numbers should be placed in a single group. If the properties file <code>filter.properties</code> exits in the current directory, and if that properties files contains a key with the name <code>"groups"</code>, then the value of the <code>"groups"</code> key overrides the default length for groups. If there is an environment variable called <code>CS336_GROUPS</code>, then the value of that variable overrides the default length and the length set by the property file (if it exits). If there is a third command-line parameter, then that command-line parameter overrides the environment variable (if there is one), the property file (if it exits), and the default length for groups.
+</p>
+
+<p>
+To retrieve property values from the <code>filter.properties</code> file (if it exists) you first need to create a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html">Properties</a> object. Then your program should create a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/File.html">File</a> object (for the file <code>filter.properties</code>) and a <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/FileInputStream.html">FileInputStream</a> object (from the <code>File</code> object) and use it to <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html#load(java.io.InputStream)">load</a> the properties from the properties file. After the properties have been loaded into the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html">Properties</a> object, you use the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html#getProperty(java.lang.String)">getProperty</a> method to see if a particular key has a value. The properties file is a text file, so the "integer" values in it are actually strings. Use the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html#parseInt(java.lang.String)">parseInt()</a> method to convert them to <code>int</code> values.
+</p>
+
+<p>
+Your program should use the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/System.html#getenv(java.lang.String)"><code>getenv()</code></a> method to see if there are <a href="https://beej.us/guide/bgc/html/split/the-outside-environment.html#env-var">environment variables</a> named <code>CS336_COLUMNS</code> or <code>CS336_PRECISION</code> or <code>CS336_GROUPS</code>. If any of these environment variables exists, then its string value should be converted to an integer value by using the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html#parseInt(java.lang.String)"><code>parseInt()</code></a> method.
+</p>
+
+<p>
+Your program should get its command-line arguments by using the <code>args</code> parameter to your program's <code>main()</code> method. Command-line arguments, like environment variables, are always strings. So you need to use <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html#parseInt(java.lang.String)"><code>parseInt()</code></a> to convert a command-line argument into an <code>int</code> value.
+</p>
+
+<p>
+Your program should read the sequence of input numbers from <a href="http://www.linfo.org/standard_input.html">standard input</a> by using the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html">Scanner</a> class methods <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html#hasNextDouble()"><code>hasNextDouble()</code></a> and <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html#nextDouble()"><code>nextDouble()</code></a>.
+</p>
+
+<p>
+Your program should write <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Formatter.html#syntax">formatted</a> numbers to <a href="http://www.linfo.org/standard_output.html">standard output</a> by using the <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/PrintWriter.html#printf(java.lang.String,java.lang.Object...)"><code>printf()</code></a> method and its associated <a href="https://www.cs.colostate.edu/~cs160/.Summer16/resources/Java_printf_method_quick_reference.pdf">formatting strings</a>.</p>
+
+<p>
+In the zip file for this assignment you will find a program called <code>Source.java</code> that you can use to test your program. The program <code>Source.java</code> writes to standard output a stream of random decimal numbers. The numbers are separated by random amounts of white space and there are a random number of random numbers on each line of output. You can test your <code>Filter.java</code> program by <a href="http://en.wikipedia.org/wiki/Pipe_(Unix)">piping</a> the standard output of <code>Source</code> into the standard input of your <code>Filter</code>. For example,
+</p>
+<pre>
+     &gt; java Source | java Filter
+</pre>
+<p>
+You can give your <code>Filter</code> program command-line arguments.
+</p>
+<pre>
+     &gt; java Source | java Filter 10 5 16
+</pre>
+<p>
+You can set an environment variable by using the following two shell commands.
+</p>
+<pre>
+     &gt; set CS336_GROUPS=14
+     &gt; java Source | java Filter 10 5
+</pre>
+
+<p>
+The previous commands used a <a href="http://en.wikipedia.org/wiki/Pipe_(Unix)">pipe</a> (the character <code>'|'</code>). Using a <a href="http://www.linfo.org/pipes.html">pipe</a> is equivalent to the following two commands that use <a href="http://foldoc.org/I/O%20redirection">I/O redirection</a>.
+</p>
+<pre>
+     &gt; java Source > temp
+     &gt; java Filter 10 5 16 < temp
+</pre>
+<p>
+The first command <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490982(v=technet.10)?redirectedfrom=MSDN">redirects</a> the standard output from <code>Source</code> into a temporary file called <code>temp</code> and then the second command redirects the contents of <code>temp</code> into the standard input of <code>Filter</code>. (How would you save the resulting output from the <code>Filter</code> in a file called <code>data.txt</code>?) The piped version of the command has the advantage of not needing a temporary file.
+</p>
+
+<p>
+The <code>Source.java</code> program accepts three (optional) command-line arguments. The first command-line argument is an integer that determines how many lines of output <code>Source</code> should produce. The second command-line argument is an integer that determines how many numbers are on each output line. The third command-line argument is an integer that determines the range of the random numbers (the default range is from 0 to 9,999). So, for example, the following command-line will produce 10 lines of output, with three numbers per line, and the random numbers are all from the range 0 to 499.
+</p>
+<pre>
+     &gt; java Source 10 3 500
+</pre>
+<p>
+The following command-line pipes the randomly generated data directly into the <code>Filter</code> process.
+</p>
+<pre>
+     &gt; java Source 10 3 500 | java Filter 4 10 20
+</pre>
+<p>
+The following command-line will save the randomly generated data in a file for possible use in testing your <code>Filter</code> program.
+</p>
+<pre>
+     &gt; java Source 10 3 500 > myData.txt
+</pre>
+<p>
+Without any command-line arguments, <code>Source</code> will produce a random number of output lines and each output line will contain a random number of decimal numbers from the range 0 to 9,999.
+</p>
+
+<p>
+In the zip file for this assignment you will also find an <a href="https://docs.oracle.com/javase/tutorial/deployment/jar/run.html">executable jar file</a> demo program called <code>filter_demo.jar</code> that you can use to demo this assignment. You can pipe the output from <code>Source</code> into the demo program with this command-line.
+</p>
+<pre>
+     &gt; java Source 2 10 | java -jar filter_demo.jar 4 10 20
+</pre>
+
+<p>
+In the zip file for this assignment you will also find a sample properties file, <code>filter.properties</code>.
+</p>
+
+<p>
+In the zip file there are files <code>data.txt</code>, <code>test_filter.cmd</code>, and <code>test_results_correct.txt</code> that help you test your completed version of <code>Filter.java</code>. Once you have <code>Filter.java</code> written and compiled, you can double click on the file <code>test_filter.cmd</code> which will run your <code>Filter</code> program several times with the data from <code>data.txt</code> as <code>stdin</code> and gather all the results into the file <code>test_results.txt</code> which you can then compare with <code>test_results_correct.txt</code>. Your <code>test_results.txt</code> should be exactly the same as <code>test_results_correct.txt</code>.
+<p>
+
+<p>
+Do not try to write <code>Filter.java</code> all at once! Write it in stages. Break the problem down into sub-problems and solve them one at a time. For example, here is an outline of how you might go about attacking this problem.
+<ul>
+<li>First, get your filter to print all of the input numbers in a single column with their decimal points lined up (and all 13 digits of precision).</li>
+<li>Second, create three columns of output (with the decimal points lined up). Be sure to take into consideration that the last row need not have three columns.</li>
+<li>Third, have a command-line argument determine the number of columns.</li>
+<li>Fourth, have a command-line argument determine the precision of the output numbers.</li>
+<li>Fifth, have a command-line argument determine the length of a group of numbers.</li>
+<li>Sixth, let environment variables determine the program's parameters.</li>
+<li>Last, check for the properties file (before checking for the environment variables and the command-line arguments) and, if it exits and has the correct keys, then have its values override the default values.
+</ul>
+</p>
+
+<p>
+Make sure you test your program under a wide variety of conditions. With and without a configuration file, with and without environment variables, with and without command-line arguments.
+</p>
+
+<p>
+When you want to <a href="https://ss64.com/nt/set.html">set</a> an environment variable from the command-line, be careful <b>not</b> to use a command like the following, with extra spaces around the <code>=</code>.
+</p>
+<pre>
+     &gt; set CS336_COLUMNS = 7
+</pre>
+<p>
+This creates an environment variable called <code>"CS336_COLUMNS "</code> (with a trailing space) and gives it the value <code>" 7"</code> (with a leading space).
+</p>
+
+<p>
+When you set an environment variable, it only exits in the command window where you created it. So, for example, you can't create an environment variable in one command prompt window and then run your program from an IDE or an editor or another command prompt window.
+</p>
+
+<p>
+Here is a list of some classes and methods that you can use.
+<ul>
+   <li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/PrintWriter.html#printf(java.lang.String,java.lang.Object...)">printf()</a></li>
+   <li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/System.html#getenv(java.lang.String)">getenv()</a></li>
+   <li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Scanner.html">Scanner</a></li>
+   <li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html">Properties</a></li>
+   <li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html#load(java.io.InputStream)">Properties.load()</a></li>
+   <li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Properties.html#getProperty(java.lang.String)">Properties.getProperty()</a></li>
+   <li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/File.html">File</a></li>
+   <li><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/FileInputStream.html">FileInputStream</a></li>
+</ul>
+</p>
+
+<p>
+<a href="http://cs.pnw.edu/~rlkraft/cs33600/handin.html">Turn in</a> a zip file called <code>CS336Hw1Surname.zip</code> (where <code>Surname</code> is your last name) containing your version of <code>filter.c</code>.
+</p>
+
+<p>
+This assignment is due Wednesday, January 31.
+</p>
+
+</section>
+
+<footer>
+  <script language="JavaScript" type="text/javascript">
+    document.write("<font size=\"-2\"><i>Last modified on " + document.lastModified + ".<\/i><\/font>");
+  </script>
+  <br>
+  <a href="mailto:rlkraft@pnw.edu"><font size="-2"><i>compliments and criticisms</i></font></a>
+</footer>
+
+</body>
+</html>
