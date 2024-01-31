@@ -1,0 +1,12 @@
+==== columns=3, precision=13, groups=0 (defaults)
+
+==== columns=5, precision=6, groups=12 (properties)
+
+==== columns=7, precision=6, groups=12 (properties, env var)
+
+==== columns=8, precision=6, groups=15 (cmd-line, env vars)
+
+====  columns=5, precision=2, groups=20 (cmd-line)
+
+==== columns=3, precision=4, groups=0 (default, env var)
+
