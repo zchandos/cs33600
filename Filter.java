@@ -21,13 +21,19 @@ public class Filter
       Scanner scanner = new Scanner(System.in);
 
       int columnCount = 0;
-      int maxColumnCount = 0;
+      int maxColumnCount = 3;
+      int precision = 13;
 
       if (args.length > 0) {
          try {
              maxColumnCount = Integer.parseInt(args[0]);
+
+             if(args.length > 1){
+               precision = Integer.parseInt(args[1]);
+             }
+
          } catch (NumberFormatException e) {
-             System.err.println("Invalid argument for number of columns. Using default.");
+             System.err.println("Invalid command-line arguments, using defaults.");
          }
      }
 
@@ -35,7 +41,8 @@ public class Filter
          
          double number = scanner.nextDouble();
 
-         System.out.printf("%16.13f  ", number);
+         String format = String.format("%%%d.%df  ", 16 + (precision + 1), precision);
+         System.out.printf(format, number);
 
          columnCount++;
 
