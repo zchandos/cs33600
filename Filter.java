@@ -23,6 +23,9 @@ public class Filter
       int columnCount = 0;
       int maxColumnCount = 3;
       int precision = 13;
+      int groupCount = 0;
+      int maxGroupCount = 0;
+      boolean groups = false;
 
       if (args.length > 0) {
          try {
@@ -30,6 +33,10 @@ public class Filter
 
              if(args.length > 1){
                precision = Integer.parseInt(args[1]);
+             }
+             if(args.length > 2){
+               groups = true;
+               maxGroupCount = Integer.parseInt(args[2]);
              }
 
          } catch (NumberFormatException e) {
@@ -41,17 +48,24 @@ public class Filter
          
          double number = scanner.nextDouble();
 
-         String format = String.format("%%%d.%df  ", 16 + (precision + 1), precision);
+         String format = String.format("%%%d.%df  ", precision + 5, precision);
          System.out.printf(format, number);
-
+     
          columnCount++;
+         groupCount++;
 
          if(columnCount == maxColumnCount){
-            System.out.println();
-   
-            columnCount = 0;
-         }
+               System.out.println();
       
+               columnCount = 0;
+         }
+         if(groups){
+            if(groupCount == maxGroupCount){
+                     System.out.println();
+                     System.out.println();
+                     groupCount = 0;
+                  }
+               } 
       }
 
       scanner.close();
