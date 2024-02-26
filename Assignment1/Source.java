@@ -1,3 +1,4 @@
+package Assignment1;
 /*
    When playing with file filters, it is useful to know that "end of file" is
    denoted at the command-line in Windows by Ctrl-Z and by Ctrl-D in Linux.
