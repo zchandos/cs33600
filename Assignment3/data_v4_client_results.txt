@@ -1,0 +1,11 @@
+CLIENT: Process ID number (PID): 29872
+CLIENT: connecting to server: localhost on port 5000
+CLIENT: Server response is: sum = 10
+CLIENT: Server response is: sum = 15
+CLIENT: Server response is: sum = 33
+CLIENT: Server response is: sum = 0
+CLIENT: Server response is: sum = 0
+CLIENT: Server response is: sum = 3
+CLIENT: Server response is: sum = 45000
+CLIENT: Server response is: sum = 150
+CLIENT: Server response is: sum = 90

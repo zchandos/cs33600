@@ -1,0 +1,16 @@
+SERVER: Process ID number (PID): 48840
+SERVER Hostname: 172.22.46.224
+SERVER IP address: 172.22.46.224
+SERVER Using port no. 5000
+SERVER online:
+SERVER: Client 1: IP: 127.0.0.1
+SERVER: Client 1: Message received: sum = 10
+SERVER: Client 1: Message received: sum = -15
+SERVER: Client 1: Message received: sum = 11
+SERVER: Client 1: Message received: sum = 55
+SERVER: Client 1: Message received: sum = -8
+SERVER: Client 1: Message received: sum = 0
+SERVER: Client 1: Message received: sum = -1
+SERVER: Client 1: Message received: sum = 10
+SERVER: Client 1: Message received: sum = 90
+SERVER: Client 1: Closed socket.
