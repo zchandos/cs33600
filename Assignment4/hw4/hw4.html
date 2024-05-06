@@ -1,0 +1,90 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CS 33600 - Homework 4</title>
+  <meta name="description" content="CS 33600 Homework 4">
+  <meta name="author" content="Roger L. Kraft">
+  <link rel="stylesheet" href="http://math.pnw.edu/~rlkraft/roger-v2.css">
+</head>
+
+<body>
+<!--
+<header>
+  <a href="http://cs.pnw.edu/~rlkraft/" title="Roger L. Kraft">Roger L. Kraft</a>
+</header>
+ -->
+<nav>
+  <ul class="nav-list" role="navigation">
+    <li><a href="../cs33600.html">CS 33600</a></li>
+    <li><a href="../syllabus.html">Syllabus</a></li>
+    <li><a href="../class.html">Lectures and Readings</a></li>
+    <li><a href="../homework.html">Homework Assignments</a></li>
+  </ul>
+  <ul class="nav-list" role="navigation">
+    <li><a href="http://math.pnw.edu/~rlkraft/roger.html">Roger Kraft</a></li>
+    <li><a href="https://pnw.edu/computer-science/">Computer Science Department</a></li>
+    <li><a href="https://pnw.edu/engineering/">School of Engineering</a></li>
+    <li><a href="https://pnw.edu/college-of-engineering-sciences/">College of Engineering & Sciences</a></li>
+    <li><a href="https://pnw.edu/">Purdue University Northwest</a></li>
+  </ul>
+</nav>
+
+<section id="Content">
+<h1>
+Programming Assignment 4<br>
+CS 33600<br>
+Network Programming<br>
+Spring, 2024
+</h1>
+
+<p>
+This assignment makes use of the files contained in this <a href="hw4.zip">zip file</a>.
+This assignment is due Friday, April 26.
+</p>
+
+<p>
+This assignment is based on the server framework and the example servers in <a href="http://math.pnw.edu/~rlkraft/cs33600/for-class/httpServer.zip">httpServer.zip</a>.
+</p>
+
+<p>
+In the <a href="hw4.zip">zip file</a> there is a file <code>Hw4.java</code> that outlines how to implement a web application using the server framework we used in class. The <code>Hw4</code> class extends the <code>HttpMethodsAdaptor</code> class from the framework. You need to override two of the HTTP method handlers, <code>doGet()</code> and <code>doPost()</code>.
+<p>
+
+<p>
+In the <a href="hw4.zip">zip file</a> there is a demo version of the web app implemented as a jar file. Run the demo version, then open a browser and navigate to this local URL.
+</p>
+<ul>
+<li><a href="http://localhost:8080/index.html">http://localhost:8080/index.html</a></li>
+</ul>
+<p>
+You should see the main page of the application. Use the two HTML forms in that page to use the application.
+</p>
+
+<p>
+<a href="http://cs.pnw.edu/~rlkraft/cs33600/handin.html">Turn in</a> a zip file called <code>CS336Hw4Surname.zip</code> (where <code>Surname</code> is your last name) containing your version of <code>Hw4.java</code>.
+</p>
+
+<p>
+As part of your implementation of <code>Hw4.java</code> you need to generate the HTML code that displays the downloaded photograph. You need to run the demo program and use your browser's "View page source" feature to see what that HTML looks like. Then you need to build that HTML as a Java string in your <code>Hw4.java</code> code. You will need to imbed the photograph's URL into your HTML string. You get the photograph's URL from the local file <code>photo-urls.txt</code> which is in the <a href="hw4.zip">zip file</a>. Each line of that file is exactly one URL. The HTTP request object has the query string with the number of the photo that you need to load. Parse that string parameter into an integer, then read that many lines from the <code>photo-urls.txt</code> file, but only keep the last line you read. The last line you read is the URL that you need. Imbed that URL into an HTML <code>img</code> tag imbedded in your web page's HTML. (Be sure to look at how the demo program does this.)
+</p>
+
+<p>
+This assignment is due Friday, April 26.
+</p>
+
+</section>
+
+<footer>
+  <script language="JavaScript" type="text/javascript">
+    document.write("<font size=\"-2\"><i>Last modified on " + document.lastModified + ".<\/i><\/font>");
+  </script>
+  <br>
+  <a href="mailto:rlkraft@pnw.edu"><font size="-2"><i>compliments and criticisms</i></font></a>
+</footer>
+
+</body>
+</html>

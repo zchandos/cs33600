@@ -1,0 +1,48 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CS 33600 Hw4 web app</title>
+    <meta name="description" content="CS 33600 Hw4 web app.">
+    <meta name="author" content="Roger L. Kraft">
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <nav>
+      <ul class="nav-list" role="navigation">
+        <li><a href="http://cs.pnw.edu/~rlkraft/cs33600/cs33600.html">CS 33600</a></li>
+        <li><a href="http://cs.pnw.edu/~rlkraft/cs33600/homework/hw4.html">Homework 4</a></li>
+      </ul>
+    </nav>
+    <section id="Content">
+      <h1>
+      Purdue Northwest<br>
+      CS 33600<br>
+      Network Programming<br>
+      Spring, 2024<br>
+      Homework 4 Web Application
+      </h1>
+      <article id="part1">
+        <p>Use the form below to submit a number between 1 and 25,000. In return you will get one of 25,000 photographs from the <a href="https://unsplash.com">Unsplash</a> photo service.</p>
+      </article>
+      <article id="part2">
+        <h3>Test your GET method.</h3>
+        <form method="get" action="photo.html">
+          Photo number: <input type="text" name="inputData">
+                <input type="reset">
+                <input type="submit"><br>
+        </form>
+      </article>
+      <article id="part3">
+        <h3>Test your POST method.</h3>
+        <form method="post" action="photo.html">
+          Photo number: <input type="text" name="postData">
+                <input type="reset">
+                <input type="submit"><br>
+        </form>
+      </article>
+    </section>
+  </body>
+</html>
